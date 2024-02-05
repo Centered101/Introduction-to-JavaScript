@@ -1,0 +1,60 @@
+<html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    input,
+    button {
+        margin-top: 10px;
+        padding: 8px;
+        font-size: 18px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <h1>โปรแกรมคำนวณเกรด</h1>
+        <label for="score">ใส่คะแนนของคุณ:</label>
+        <input type="number" id="score" placeholder="Enter score">
+        <button onclick="calculateGrade()">คำนวณเกรด</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        
+        function calculateGrade() {
+
+            var score = document.getElementById('score').value;
+
+            var grade = '';
+            if (score >= 90) {
+                grade = 'A';
+            } else if (score >= 80) {
+                grade = 'B';
+            } else if (score >= 70) {
+                grade = 'C';
+            } else if (score >= 60) {
+                grade = 'D';
+            } else {
+                grade = 'F';
+            }
+
+            document.getElementById('result').innerHTML = 'เกรดของคุณคือ: ' + grade;
+        }
+
+    </script>
+
+</body>
+
+</html>

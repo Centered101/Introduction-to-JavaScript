@@ -1,0 +1,69 @@
+<html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    button {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <h1>เกมโยนเหรียญ</h1>
+        <label for="userGuess">การเดาของคุณ:</label>
+        <input type="text" id="userGuess" placeholder="หัวหรือก้อย">
+        <label for="rounds">จำนวนรอบ:</label>
+        <input type="number" id="rounds" placeholder="ใส่จำนวนรอบ">
+        <button onclick="playGame()">เล่นเกมส์</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+
+        function playGame() {
+            var userGuess = document.getElementById('userGuess').value.toLowerCase();
+            var rounds = document.getElementById('rounds').value;
+
+            if (userGuess !== 'หัว' && userGuess !== 'ก้อย') {
+                alert('กรุณากรอก "หัว" หรือ "ก้อย" เป็นการเดา');
+                return;
+            }
+
+            if (isNaN(rounds) || rounds <= 0) {
+                alert('กรุณากรอกจำนวนรอบที่ถูกต้อง');
+                return;
+            }
+
+            var wins = 0;
+            for (var i = 0; i < rounds; i++) {
+                var randomNumber = Math.floor(Math.random() * 2);
+
+                if ((randomNumber === 0 && userGuess === 'หัว') || (randomNumber === 1 && userGuess === 'ก้อย')) {
+                    wins++;
+                }
+            }
+
+            var resultElement = document.getElementById('result');
+            resultElement.innerHTML = 'ออกจาก ' + rounds + ' รอบ คุณชนะแล้ว ' + wins + ' ครั้ง';
+        }
+
+    </script>
+
+</body>
+
+</html>

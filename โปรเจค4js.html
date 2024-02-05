@@ -1,0 +1,53 @@
+<html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    input,
+    button {
+        margin-top: 10px;
+        padding: 8px;
+        font-size: 18px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <h1>เครื่องคำนวณต้นทุนอาหาร</h1>
+        <label for="mealPrice">ระบุค่าอาหาร:</label>
+        <input type="number" id="mealPrice" placeholder="Enter the cost of the meal">
+        <button onclick="calculateTotal()">คำนวณผลรวม</button>
+        <p id="totalCost"></p>
+    </div>
+
+    <script>
+        
+        function calculateTotal() {
+            var mealPrice = document.getElementById('mealPrice').value;
+
+            if (!mealPrice) {
+                alert('Please enter the cost of the meal before calculating the total.');
+                return;
+            }
+
+            var totalCost = parseFloat(mealPrice) + (parseFloat(mealPrice) * 0.03);
+
+            document.getElementById('totalCost').innerHTML = 'ค่าใช้จ่ายทั้งหมด (รวมภาษี 3%): ' + totalCost.toFixed(2) + ' บาท';
+        }
+
+    </script>
+
+</body>
+
+</html>

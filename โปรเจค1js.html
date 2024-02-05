@@ -1,0 +1,43 @@
+<html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <h1 id="randomNumber">โปรเจค1</h1>
+
+        <button onclick="generateRandomNumber()">Generate</button>
+    </div>
+
+    <script>
+
+        function generateRandomNumber() {
+
+            var randomNumber = Math.floor(Math.random() * 100) + 1;
+
+            document.getElementById('randomNumber').innerHTML = 'เลขที่ได้: ' + randomNumber;
+        }
+        
+    </script>
+
+</body>
+
+</html>

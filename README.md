@@ -21,7 +21,7 @@
 
 <details>
 <summary>
-<strong>Stats</strong></summary>
+### <strong>Stats</strong></summary>
 
 ## Stats
 

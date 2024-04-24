@@ -19,7 +19,7 @@
 
 </details>
 
-## <details>
+<details>
 <summary>
  <strong>Stats</strong></summary>
 

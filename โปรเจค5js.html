@@ -1,5 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="th">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมโยนเหรียญ โปรเจคที่ 5 javascript</title>
+</head>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -14,56 +20,120 @@
         text-align: center;
     }
 
+    input {
+        margin: 10px 0;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        border: 1px solid #cccccc;
+        width: calc(100% - 22px);
+        text-align: center;
+    }
+
     button {
         margin-top: 10px;
-        padding: 10px 20px;
+        padding: 20px;
         font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+        width: 80px;
+    }
+
+    button:hover {
+        background-color: #cccccc;
+    }
+
+    .active {
+        background-color: #cccccc !important;
+        color: #000000 !important;
+        border: solid #fff000 3px;
+        padding: 18px;
     }
 </style>
 
 <body>
 
     <div class="container">
-        <h1>เกมโยนเหรียญ</h1>
-        <label for="userGuess">การเดาของคุณ:</label>
-        <input type="text" id="userGuess" placeholder="หัวหรือก้อย">
-        <label for="rounds">จำนวนรอบ:</label>
-        <input type="number" id="rounds" placeholder="ใส่จำนวนรอบ">
-        <button onclick="playGame()">เล่นเกมส์</button>
-        <p id="result"></p>
+        <h1>เกมโยนเหรียญ โปรเจคที่ 5 javascript</h1>
+        <div class="selection-buttons">
+            <button id="headButton" onclick="selectGuess('หัว')">หัว</button>
+            <button id="tailButton" onclick="selectGuess('ก้อย')">ก้อย</button>
+        </div>
+        <input type="text" id="rounds" placeholder="ใส่จำนวนรอบ" readonly>
+        <div class="number-buttons">
+            <button onclick="appendNumber(1)">1</button>
+            <button onclick="appendNumber(2)">2</button>
+            <button onclick="appendNumber(3)">3</button>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(9)">9</button>
+            <button onclick="appendNumber(0)">0</button>
+        </div>
+        <button onclick="playGame()">เล่น</button>
+        <button onclick="resetGame()">รีเซ็ต</button>
+        <p id="result">-</p>
     </div>
+</body>
+<script>
+    var userGuess = '';
 
-    <script>
+    function selectGuess(guess) {
+        userGuess = guess;
+        document.getElementById('headButton').classList.remove('active');
+        document.getElementById('tailButton').classList.remove('active');
 
-        function playGame() {
-            var userGuess = document.getElementById('userGuess').value.toLowerCase();
-            var rounds = document.getElementById('rounds').value;
+        if (guess === 'หัว') {
+            document.getElementById('headButton').classList.add('active');
+        } else {
+            document.getElementById('tailButton').classList.add('active');
+        }
+    }
 
-            if (userGuess !== 'หัว' && userGuess !== 'ก้อย') {
-                alert('กรุณากรอก "หัว" หรือ "ก้อย" เป็นการเดา');
-                return;
-            }
+    function appendNumber(num) {
+        var roundsInput = document.getElementById('rounds');
+        roundsInput.value = roundsInput.value + num;
+    }
 
-            if (isNaN(rounds) || rounds <= 0) {
-                alert('กรุณากรอกจำนวนรอบที่ถูกต้อง');
-                return;
-            }
+    function playGame() {
+        var rounds = parseInt(document.getElementById('rounds').value);
 
-            var wins = 0;
-            for (var i = 0; i < rounds; i++) {
-                var randomNumber = Math.floor(Math.random() * 2);
-
-                if ((randomNumber === 0 && userGuess === 'หัว') || (randomNumber === 1 && userGuess === 'ก้อย')) {
-                    wins++;
-                }
-            }
-
-            var resultElement = document.getElementById('result');
-            resultElement.innerHTML = 'ออกจาก ' + rounds + ' รอบ คุณชนะแล้ว ' + wins + ' ครั้ง';
+        if (userGuess === '') {
+            alert('กรุณาเลือก "หัว" หรือ "ก้อย"');
+            return;
         }
 
-    </script>
+        if (isNaN(rounds) || rounds <= 0) {
+            alert('กรุณากรอกจำนวนรอบที่ถูกต้อง');
+            document.getElementById('rounds').value = '';
+            return;
+        }
 
-</body>
+        var wins = 0;
+        for (var i = 0; i < rounds; i++) {
+            var randomNumber = Math.floor(Math.random() * 2);
+
+            if ((randomNumber === 0 && userGuess === 'หัว') || (randomNumber === 1 && userGuess === 'ก้อย')) {
+                wins++;
+            }
+        }
+
+        var resultElement = document.getElementById('result');
+        resultElement.innerHTML = 'ออกจาก ' + rounds + ' รอบ คุณชนะแล้ว ' + wins + ' ครั้ง';
+    }
+
+    function resetGame() {
+        userGuess = '';
+        document.getElementById('headButton').classList.remove('active');
+        document.getElementById('tailButton').classList.remove('active');
+        document.getElementById('rounds').value = '';
+        document.getElementById('result').innerHTML = '-';
+    }
+</script>
 
 </html>

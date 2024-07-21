@@ -1,11 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang="th">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แอปพลิเคชันสลากกินแบ่ง โปรเจคที่ 1 javascript</title>
+</head>
 <style>
     body {
         font-family: Arial, sans-serif;
         display: flex;
         align-items: center;
         justify-content: center;
+        height: 100vh;
         margin: 0;
     }
 
@@ -14,30 +21,39 @@
     }
 
     button {
-        padding: 10px 20px;
-        font-size: 18px;
+        margin-top: 10px;
+        padding: 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    button:hover {
+        background-color: #cccccc;
     }
 </style>
 
 <body>
 
     <div class="container">
-        <h1 id="randomNumber">โปรเจค1</h1>
+        <h1>แอปพลิเคชันสลากกินแบ่ง โปรเจคที่ 1 javascript</h1>
+        <p id="randomNumber">-</p>
 
-        <button onclick="generateRandomNumber()">Generate</button>
+        <button onclick="generateRandomNumber()">สุ่มเลข</button>
     </div>
 
-    <script>
-
-        function generateRandomNumber() {
-
-            var randomNumber = Math.floor(Math.random() * 100) + 1;
-
-            document.getElementById('randomNumber').innerHTML = 'เลขที่ได้: ' + randomNumber;
-        }
-        
-    </script>
-
 </body>
+<script>
+
+    function generateRandomNumber() {
+
+        var randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        document.getElementById('randomNumber').innerHTML = 'เลขที่ได้: ' + randomNumber;
+    }
+
+</script>
 
 </html>
